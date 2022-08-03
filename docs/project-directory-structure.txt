@@ -1,0 +1,4 @@
+The directory structure of this project is based on Jean-Paul's Directory Structure For Projects:
+https://github.com/developwithpassion/blog.developwithpassion.com/blob/master/source/_posts/2007-10-01-directory-structure-for-projects.markdown
+https://akutz.wordpress.com/2008/05/30/a-cross-language-project-structure/
+
