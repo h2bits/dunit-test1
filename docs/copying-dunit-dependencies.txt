@@ -1,0 +1,6 @@
+These are the commands I've used to populate the tools/Dunit dir:
+$ mkdir tools/DUnit
+$ cp ../../dunit/framework/* tools/DUnit/
+$ rm tools/DUnit/DUnit*
+$ cp ../../dunit/src/GUITestRunner.dfm tools/DUnit/
+
