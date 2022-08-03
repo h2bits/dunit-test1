@@ -1,11 +1,13 @@
 program Project1Test;
 
 uses
-  Forms;
+  Forms,
+  TestFramework,
+  GUITestRunner;
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.Run;
+  GUITestRunner.RunRegisteredTests;
 end.
