@@ -3,7 +3,8 @@ program Project1Test;
 uses
   Forms,
   TestFramework,
-  GUITestRunner;
+  GUITestRunner,
+  Project1TestCases in 'Project1TestCases.pas';
 
 {$R *.res}
 
