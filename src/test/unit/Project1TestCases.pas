@@ -7,43 +7,37 @@ uses
   Classes;
 
 type
-  TTestCaseFirst = class(TTestCase)
+  TTestArithmetic = class(TTestCase)
+  published
+    procedure TestFirst;
+    procedure TestSecond;
+    procedure TestThird;
+  end;
+
+  TTestStringList = class(TTestCase)
   private
     FStrList: TStringList;
   protected
     procedure SetUp; override;
     procedure TearDown; override;
   published
-    procedure TestFirst;
-    procedure TestSecond;
-    procedure TestThird;
     procedure TestPopulateStringList;
     procedure TestSortStringList;
   end;
 
 implementation
 
-procedure TTestCaseFirst.SetUp;
-begin
-  FStrList := TStringList.Create;
-end;
-
-procedure TTestCaseFirst.TearDown;
-begin
-  FStrList.Free;
-end;
-
-procedure TTestCaseFirst.TestFirst;
+procedure TTestArithmetic.TestFirst;
 begin
   Check(1 + 1 = 2, 'Catastrophic arithmetic failure!');
 end;
 
-procedure TTestCaseFirst.TestSecond;
+procedure TTestArithmetic.TestSecond;
 begin
   Check(1 + 1 = 3, 'Deliberate failure');
 end;
 
-procedure TTestCaseFirst.TestThird;
+procedure TTestArithmetic.TestThird;
 var
   I: Integer;
 begin
@@ -51,7 +45,17 @@ begin
   Check(1 div I = I, 'Deliberate exception');
 end;
 
-procedure TTestCaseFirst.TestPopulateStringList;
+procedure TTestStringList.SetUp;
+begin
+  FStrList := TStringList.Create;
+end;
+
+procedure TTestStringList.TearDown;
+begin
+  FStrList.Free;
+end;
+
+procedure TTestStringList.TestPopulateStringList;
 var
   I: Integer;
 begin
@@ -61,7 +65,7 @@ begin
   Check(FStrList.Count = 50);
 end;
 
-procedure TTestCaseFirst.TestSortStringList;
+procedure TTestStringList.TestSortStringList;
 begin
   Check(FStrList.Sorted = False);
   Check(FStrList.Count = 0);
@@ -75,5 +79,6 @@ begin
 end;
 
 initialization
-  TestFramework.RegisterTest(TTestCaseFirst.Suite);
+  RegisterTest('Simple suite', TTestArithmetic.Suite);
+  RegisterTest('Simple suite', TTestStringList.Suite);
 end.
