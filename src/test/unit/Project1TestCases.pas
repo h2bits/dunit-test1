@@ -10,6 +10,9 @@ type
   TTestCaseFirst = class(TTestCase)
   private
     FStrList: TStringList;
+  protected
+    procedure SetUp; override;
+    procedure TearDown; override;
   published
     procedure TestFirst;
     procedure TestSecond;
@@ -19,6 +22,16 @@ type
   end;
 
 implementation
+
+procedure TTestCaseFirst.SetUp;
+begin
+  FStrList := TStringList.Create;
+end;
+
+procedure TTestCaseFirst.TearDown;
+begin
+  FStrList.Free;
+end;
 
 procedure TTestCaseFirst.TestFirst;
 begin
@@ -42,33 +55,23 @@ procedure TTestCaseFirst.TestPopulateStringList;
 var
   I: Integer;
 begin
-  try
-    FStrList := TStringList.Create;
-    Check(FStrList.Count = 0);
-    for I := 1 to 50 do
-      FStrList.Add('i');
-    Check(FStrList.Count = 50);
-  finally
-    FStrList.Free;
-  end;
+  Check(FStrList.Count = 0);
+  for I := 1 to 50 do
+    FStrList.Add('i');
+  Check(FStrList.Count = 50);
 end;
 
 procedure TTestCaseFirst.TestSortStringList;
 begin
-  try
-    FStrList := TStringList.Create;
-    Check(FStrList.Sorted = False);
-    Check(FStrList.Count = 0);
-    FStrList.Add('You');
-    FStrList.Add('Love');
-    FStrList.Add('I');
-    FStrList.Sorted := True;
-    Check(FStrList[2] = 'You');
-    Check(FStrList[1] = 'Love');
-    Check(FStrList[0] = 'I');
-  finally
-    FStrList.Free;
-  end;
+  Check(FStrList.Sorted = False);
+  Check(FStrList.Count = 0);
+  FStrList.Add('You');
+  FStrList.Add('Love');
+  FStrList.Add('I');
+  FStrList.Sorted := True;
+  Check(FStrList[2] = 'You');
+  Check(FStrList[1] = 'Love');
+  Check(FStrList[0] = 'I');
 end;
 
 initialization
